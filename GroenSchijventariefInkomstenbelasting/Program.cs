@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 // Opdrachtenreeks groen Schijventarief Inkomstenbelasting
 
@@ -26,16 +27,40 @@ namespace GroenSchijventariefInkomstenbelasting
             return (int.Parse(Console.ReadLine()));
         }
 
+        static int berekentargrp5(int belastbaarinkomen)
+        {
+            // twaalf procent van belastbaar inkomen
+            int tpbi = 0;
+
+            tpbi = (int)(belastbaarinkomen * 0.12);
+            if (tpbi > 6704)
+            {
+                tpbi = 6704;
+            }
+
+            return (15503 + tpbi);
+        }
+
         static void Main(string[] args)
         {
-            int tariefgroep = 0;
+            int invtariefgroep = 0;
             int belastbaarinkomen = 0;
 
-            Console.WriteLine("Inkomstenbelasting berekenen.");
             belastbaarinkomen = VraagBelastbaarInkomen();
-            tariefgroep = VraagTariefGroep();
+            invtariefgroep = VraagTariefGroep();
+            Dictionary<int, int> tariefgroep = new Dictionary<int, int>();
+            tariefgroep.Add(1, 419);
+            tariefgroep.Add(2, 8799);
+            tariefgroep.Add(3, 17179);
+            tariefgroep.Add(4, 15503);
+            tariefgroep.Add(5, berekentargrp5(belastbaarinkomen));
+
+
+            Console.WriteLine("Inkomstenbelasting berekenen.");
+            
             Console.WriteLine("Belastbaar inkomen is: {0}", belastbaarinkomen);
-            Console.WriteLine("Tariefgroep is: {0}", tariefgroep);
+            Console.WriteLine("Tariefgroep is: {0}", invtariefgroep);
+            Console.WriteLine("Uw belastingvrije som is: {0}", tariefgroep[invtariefgroep]);
         }
     }
 }
