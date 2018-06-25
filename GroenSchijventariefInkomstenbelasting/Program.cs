@@ -41,6 +41,26 @@ namespace GroenSchijventariefInkomstenbelasting
             return (15503 + tpbi);
         }
 
+        static int belastinggebied1(int bedrag)
+        {
+            return (int)(bedrag * 0.3575);
+        }
+        
+        static int belastinggebied2(int bedrag)
+        {
+            return (int)(bedrag * 0.3705);
+        }
+
+        static int belastinggebied3(int bedrag)
+        {
+            return (int)(bedrag * 0.50);
+        }
+
+        static int belastinggebied4(int bedrag)
+        {
+            return (int)(bedrag * 0.60);
+        }
+
         static void Main(string[] args)
         {
             int invtariefgroep = 1;
