@@ -43,8 +43,10 @@ namespace GroenSchijventariefInkomstenbelasting
 
         static void Main(string[] args)
         {
-            int invtariefgroep = 0;
+            int invtariefgroep = 1;
             int belastbaarinkomen = 0;
+            int belastbaresom = 0;
+            int belastingvrijesom = 0;
 
             belastbaarinkomen = VraagBelastbaarInkomen();
             invtariefgroep = VraagTariefGroep();
@@ -54,13 +56,23 @@ namespace GroenSchijventariefInkomstenbelasting
             tariefgroep.Add(3, 17179);
             tariefgroep.Add(4, 15503);
             tariefgroep.Add(5, berekentargrp5(belastbaarinkomen));
+            belastingvrijesom = tariefgroep[invtariefgroep];
+            belastbaresom = belastbaarinkomen - belastingvrijesom;
 
+            if (belastbaresom <= belastingvrijesom)
+            {
+                Console.WriteLine("Belastbare som is: {0}", belastbaresom);
+                Console.WriteLine("Belastingvrije som is: {0}", belastingvrijesom);
+                Console.WriteLine("U hoeft geen belasting te betalen.");
+                Environment.Exit(0);
+            }
 
             Console.WriteLine("Inkomstenbelasting berekenen.");
             
             Console.WriteLine("Belastbaar inkomen is: {0}", belastbaarinkomen);
             Console.WriteLine("Tariefgroep is: {0}", invtariefgroep);
             Console.WriteLine("Uw belastingvrije som is: {0}", tariefgroep[invtariefgroep]);
+            Console.WriteLine("Uw belastbare som is: {0}", belastbaresom);
         }
     }
 }
