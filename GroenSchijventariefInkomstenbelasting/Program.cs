@@ -35,7 +35,7 @@ namespace GroenSchijventariefInkomstenbelasting
             belastbaarinkomen = VraagBelastbaarInkomen();
             tariefgroep = VraagTariefGroep();
             Console.WriteLine("Belastbaar inkomen is: {0}", belastbaarinkomen);
-            Console.WriteLine("Tariefgroep is: {0}", tg);
+            Console.WriteLine("Tariefgroep is: {0}", tariefgroep);
         }
     }
 }
