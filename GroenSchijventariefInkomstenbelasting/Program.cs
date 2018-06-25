@@ -28,12 +28,12 @@ namespace GroenSchijventariefInkomstenbelasting
 
         static void Main(string[] args)
         {
-            int tg = 0;
+            int tariefgroep = 0;
             int belastbaarinkomen = 0;
 
             Console.WriteLine("Inkomstenbelasting berekenen.");
             belastbaarinkomen = VraagBelastbaarInkomen();
-            tg = VraagTariefGroep();
+            tariefgroep = VraagTariefGroep();
             Console.WriteLine("Belastbaar inkomen is: {0}", belastbaarinkomen);
             Console.WriteLine("Tariefgroep is: {0}", tg);
         }
