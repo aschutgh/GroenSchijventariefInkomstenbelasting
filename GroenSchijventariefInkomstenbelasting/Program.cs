@@ -41,6 +41,80 @@ namespace GroenSchijventariefInkomstenbelasting
             return (15503 + tpbi);
         }
 
+        static Double BerekenBelasting(int belastbaresom)
+        {
+            //FIXME Controleren!!!!!!!!!!!!!!!
+            int belastinggebied = 1;
+            Double belasting = 0.0;
+            int bsom = belastbaresom;
+            var doorgaan = true;
+
+            while (doorgaan == true)
+            {
+                switch (belastinggebied)
+                {
+                    case 1:
+                        Console.WriteLine("Belastinggebied 1");
+                        if (bsom - 8000 <= 0)
+                        {
+                            doorgaan = false;
+                            belasting = bsom * 0.3705;
+                            Console.WriteLine("belastbare som {0} ; belasting {1}", bsom, belasting);
+                        }
+                        else if (bsom - 8000 > 0)
+                        {
+                            bsom = bsom - 8000;
+                            belasting = 8000 * 0.3705;
+                            belastinggebied += 1;
+                            doorgaan = true;
+                            Console.WriteLine("belastbare som {0} ; belasting {1}", bsom, belasting);
+                        }
+                        break;
+                    case 2:
+                        Console.WriteLine("Belastinggebied 2");
+                        if (bsom - 17000 <= 0)
+                        {
+                            doorgaan = false;
+                            belasting = belasting + bsom * 0.3705;
+                            Console.WriteLine("belastbare som {0} ; belasting {1}", bsom, belasting);
+                        }
+                        else if (bsom - 17000 > 0)
+                        {
+                            bsom = bsom - 17000;
+                            belasting = belasting + 17000 * 0.3705;
+                            belastinggebied += 1;
+                            doorgaan = true;
+                            Console.WriteLine("belastbare som {0} ; belasting {1}", bsom, belasting);
+                        }
+                        break;
+                    case 3:
+                        Console.WriteLine("Belastinggebied 3");
+                        if (bsom - 29000 <= 0)
+                        {
+                            doorgaan = false;
+                            belasting = belasting + bsom * 0.50;
+                            Console.WriteLine("belastbare som {0} ; belasting {1}", bsom, belasting);
+                        }
+                        else if (bsom - 29000 > 0)
+                        {
+                            bsom = bsom - 29000;
+                            belasting = belasting + 29000 * 0.50;
+                            belastinggebied += 1;
+                            doorgaan = true;
+                            Console.WriteLine("belastbare som {0} ; belasting {1}", bsom, belasting);
+                        }
+                        break;
+                    case 4:
+                        Console.WriteLine("Belastinggebied 4");
+                        doorgaan = false;
+                        belasting = belasting + bsom * 0.60;
+                        Console.WriteLine("belastbare som {0} ; belasting {1}", bsom, belasting);
+                        break;
+                }
+            }
+            return belasting;
+        }
+
         static void Main(string[] args)
         {
             int invtariefgroep = 1;
@@ -73,6 +147,9 @@ namespace GroenSchijventariefInkomstenbelasting
             Console.WriteLine("Tariefgroep is: {0}", invtariefgroep);
             Console.WriteLine("Uw belastingvrije som is: {0}", tariefgroep[invtariefgroep]);
             Console.WriteLine("Uw belastbare som is: {0}", belastbaresom);
+
+            var belasting = BerekenBelasting(belastbaresom);
+            Console.WriteLine("U moet het volgende bedrag aan belasting betalen: {0}", belasting);
         }
     }
 }
