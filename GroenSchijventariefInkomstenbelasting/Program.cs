@@ -58,13 +58,13 @@ namespace GroenSchijventariefInkomstenbelasting
                         if (bsom - 8000 <= 0)
                         {
                             doorgaan = false;
-                            belasting = bsom * 0.3705;
+                            belasting = bsom * 0.3575;
                             Console.WriteLine("belastbare som {0} ; belasting {1}", bsom, belasting);
                         }
                         else if (bsom - 8000 > 0)
                         {
                             bsom = bsom - 8000;
-                            belasting = 8000 * 0.3705;
+                            belasting = 8000 * 0.3575;
                             belastinggebied += 1;
                             doorgaan = true;
                             Console.WriteLine("belastbare som {0} ; belasting {1}", bsom, belasting);
